@@ -1,2 +1,54 @@
-<h1>¡Bienvenido/a!</h1>
-<h2>Podras acceder al material de clases a través de este sitio</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <a href={% url "inicio" %}>Inicio</a>
+        <a href={% url "crear_alumno" %}>Registración</a>
+        <a href={% url "listado_de_alumnos" %}>Listado</a>
+    </nav>
+    <h1>¡Bienvenido/a a tu espacio de aprendizaje colaborativo!</h1>
+<h2>Podras registrarte como alumno y acceder a todos los beneficios proporcionados por la plataforma.</h2>
+<p>Este sitio está diseñado para facilitar tu experiencia académica, permitiéndote no solo registrarte como alumno y loguearte, sino también conectar con tus compañeros y acceder a material relevante para tus estudios.</p>
+<p>Aquí podrás:</p>
+<ul style="list-style: none">
+    <li>✅ Registrarte como alumno.</li>
+    <li>✅ Listar a tus compañeros acorde a la institución y materia que cursen juntos y contactarlos a través de sus correos electrónicos.</li>
+    <li>✅ Logueate en el sitio.
+    <li>✅ Acceder al material según la institución y la asignatura que declares en tu registro.</li>  
+</ul>
+
+    <nav>
+        <form action="{% url 'saludo' 'NOMBRE_TEMP' 'APELLIDO_TEMP' %}" method="GET" id="saludoForm">
+            <label for="nombre">Nombre:</label>
+            <input type="text" name="nombre" id="nombre" required>
+            <br>
+
+            <label for="apellido">Apellido:</label>
+            <input type="text" name="apellido" id="apellido" required>
+            <br>
+
+            <button type="submit">Continuar</button>
+        </form>
+    </nav>
+
+    <script>
+        // Modificar la URL antes de enviar el formulario
+        document.getElementById("saludoForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            let nombre = document.getElementById("nombre").value;
+            let apellido = document.getElementById("apellido").value;
+            
+            // Reemplazar en la URL los valores del usuario
+            let url = `{% url 'saludo' 'NOMBRE_TEMP' 'APELLIDO_TEMP' %}`.replace('NOMBRE_TEMP', nombre).replace('APELLIDO_TEMP', apellido);
+            
+            window.location.href = url;
+        });
+    </script>
+</body>
+</html>

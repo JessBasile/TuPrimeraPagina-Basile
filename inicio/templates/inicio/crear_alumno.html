@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creación Alumno</title>
+</head>
+<body>
+    <nav>
+        <a href={% url "inicio" %}>Inicio</a>
+        <a href={% url "crear_alumno" %}>Registración</a>
+        <a href={% url "listado_de_alumnos" %}>Listado</a>
+    </nav>
+    <h2>✍️ Introducción:</h2>
+    <p>Completa el formulario a continuación con tus datos para que podamos identificarte y brindarte acceso al material correspondiente a tu institución y asignatura. Este registro también te permitirá conectarte con tus compañeros mediante sus correos electrónicos.</p>
+    <h2>🛡️ Instrucciones:</h2>
+    <ul>
+        <li>Asegúrate de que tu correo electrónico sea correcto, ya que se utilizará para futuras notificaciones.</li>
+        <li>Los campos son obligatorios y deben completarse con información veraz.</li>
+        <li>¡Atención! Si ya estás registrado no permitirá que vuelvas a efectuarlo.</li>
+    </ul>
+    <h2>📚 Beneficios del Registro:</h2>
+    <ul style="list-style: none">
+        <li>✅ Acceso al material de estudio de tus asignaturas.</li>
+        <li>✅ Contacto directo con tus compañeros.</li>
+        <li>✅ Actualización constante de recursos según tu institución.</li>
+    </ul>
+        <h1>Formulario de Registro de Alumnos</h1>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{formulario}}
+
+        {% if error %}
+        <p style="color: red;">{{ error }}</p>
+        {% endif %}
+
+        <input type="submit" value="Registro de Alumno">    
+    </form>
+
+    <h2> ℹ️ Importante:</h2>
+<p>Una vez completado tu registro, podrás consultar el listado de tus compañeros por institución y sus correos electrónicos accediendo a través de la opción "Listado" en la barra de navegación superior.</p>
+
+</body>
+</html>
