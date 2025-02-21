@@ -33,7 +33,7 @@ source venv/bin/actívate # Activación del entorno virtual
 
 4. **Instalación de Django:**
 
-<img align="right" alt="Django" width="250" src="https://github.com/JessBasile/TuPrimeraPagina-Basile/raw/main/imagenes/django-python-logo">
+<img align="right" alt="Django" width="250" src="https://github.com/JessBasile/TuPrimeraPagina-Basile/raw/main/imagenes/django-python-logo.png">
 
 Se recomienda activar el entorno virtual y proceder a instalar django para hacerlo dentro del entorno.
 ```
