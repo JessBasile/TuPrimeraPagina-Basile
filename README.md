@@ -33,7 +33,7 @@ source venv/bin/actívate # Activación del entorno virtual
 
 4. **Instalación de Django:**
 
-<img align="right" alt="Django" width="250" src="https://github.com/JessBasile/TuPrimeraPagina-Basile/raw/main/imagenes/django-python-logo.png">
+<img align="right" alt="Django" width="80" src="https://github.com/JessBasile/TuPrimeraPagina-Basile/raw/main/imagenes/django-python-logo.png">
 
 Se recomienda activar el entorno virtual y proceder a instalar django para hacerlo dentro del entorno.
 ```
@@ -178,3 +178,38 @@ if formulario.is_valid():
 ```
 Y en la sección cleaned_data extrae los datos validados del formulario.
 Por último, los templates que contienen formularios con condicionales utilizan `{& if %}`, `{% else %}`, `{% for %}`, etc.
+
+14. **Herencia de templates:**
+Para evitar la repetición de código en los templates, se implementa la herencia de templates y se recurre a utilizar un bootstrap de la página https://startbootstrap.com/ cuya estructura html se copia en un template denominado `template_base.html` dentro de la carpeta templates en la carpeta proyectoDjango y dentro de inicio se "extraen" los archivos que esa plantilla elegida de bootstrap contiene dentro de una carpeta denominada `static` (en la carpeta de la aplicación inicio).
+Una vez creado el template base, se procederá a borrar en cada template de la aplicación inicio el código que se repite en todas, dejando solo el contenido específico de cada página/template. Asimismo, se incroporará al inicio de cada template la siguiente primera línea de código que "importará" el contenido base del template general:
+```
+{% extends "template_base.html" %}
+```
+Para que funcione exitosamente se incorpora un `block` en el template_base (antes que termine todo el HTML) para indicar que se incorporará contenido en otros templates, con el siguiente código:
+```
+    {% block contenido %}
+    {% endblock contenido %}
+```
+
+15. **Creación de Formularios con ModelForm:**
+Para permitir la edición de registros, se acrea un formulario en forms.py utilizando `ModelForm` con una sub-clase dentro `Meta`, que permitirá efectuar modificaciones y otro tipo de acciones sobre los registros.
+Luego se incorporan tres vistas (con sus correspondientes urls) para poder eliminar registros, ver registros/consultarlos y modificar ese registro. Asimismo, en listado_de_alumos.html se deberá incorporar los links que deriven a las urls con interactividad que ejecuten esa acción ya sea eliminar, modificar o solo consultar.
+Para el caso específico de modificar el registro, se creará una nueva clase dentro de forms.py `"ModificarAlumno"` con forms.ModelForm y Meta que permitirá identificar cierta configuración de la cual se puede especificar un modelo "Alumno" que lo deberé importar con:
+```
+from inicio.models import Alumno
+```
+
+16. **Clases basadas en vistas:**
+Cuando se realizan clases basadas en vistas, se crea una nueva carpeta para colocar las clases basadas en vistas `CBV` dentro de la carpetas de templates ---> inicio.  Dentro del archivo views.py se deberá primero importar: 
+```
+from django.views.generic.edit import UpdateView 
+```
+Para utilizar un tipo de clase que nos proporciona Django UpdateView y también se deberá importar:
+```
+from django.urls import reverse_lazy
+```
+Esta última, es una funcionalidad que permite hacer lo mismo que el redirect pero para un `success_url`. Por último, en el archivo modificar_alumno.html se debe reemplazar `{{form}}` en donde se utiliza {{formulario}} para que lo tome adecuadamente y en el PATH en urls:
+``` 
+path('modificar-alumno/<int:pk>', ModificarAlumnoVista.as_view(), name='modificar_alumno'),
+```
+En el caso del eliminado, se efectúan los mismos pasos solo que en lugar de importar UpdateView en django.views se importará `DeleteView`. **Para eliminar en el caso de CBV será necesario un template porque requerirá CONFIRMAR**.

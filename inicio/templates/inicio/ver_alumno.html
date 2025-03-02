@@ -1,0 +1,12 @@
+{% extends "template_base.html" %}
+
+{% block title_head %}Alumno{% endblock title_head %}
+
+{% block contenido %}
+<h2>Información del alumno/a {{alumno.nombre}} {{alumno.apellido}}</h2>
+<ul>
+    <li>email: {{alumno.email}}</li>
+    <li>Institución: {{alumno.institucion}}</li>
+    <li>Materia: {{alumno.materia}}</li>
+</ul>
+{% endblock contenido %}

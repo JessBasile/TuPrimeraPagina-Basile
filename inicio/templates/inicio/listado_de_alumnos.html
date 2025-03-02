@@ -1,35 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listado de Alumnos</title>
-</head>
-<body>
-    <nav>
-        <a href={% url "inicio" %}>Inicio</a>
-        <a href={% url "crear_alumno" %}>Registración</a>
-        <a href={% url "listado_de_alumnos" %}>Listado</a>
-    </nav>
+{% extends "template_base.html" %}
+
+<title>{% block title_head %}Listado{% endblock title_head %}</title>
+
+{% block contenido %}
     
-    <h1>Consulta de Alumnos Registrados</h1>
-    <h2>🔍 Instrucciones para el Formulario de Búsqueda:</h2>
+    <h2>Consulta de Alumnos Registrados</h2>
+    <h3>🔍 Instrucciones para el Formulario de Búsqueda:</h3>
     <ul style="list-style: none">
         <li>✅Completa uno o ambos campos para filtrar los resultados.</li>
         <li>✅Si quieres ver todos los alumnos, deja ambos campos en blanco y haz clic en "Buscar".</li>
         <li>✅Puedes copiar el correo electrónico de un compañero para contactarlo.</li>
     </ul>
-    <form action="">
+    <form action="" method="GET">
         {{formulario}}
+        
         <input type="submit" value="Buscar">
     </form>
-    <h1>Listado de Alumnos Registrados</h1>
+    <h2>Listado de Alumnos Registrados</h2>
     {% if  alumnos %}
     
     <ul>
         {% for alumno in alumnos %}
         <li>
-            {{alumno}}
+            {{alumno}} |
+            <a href={% url "eliminar_alumno" alumno.id %}>Eliminar</a> |
+            <a href={% url "ver_alumno" alumno.id %}>Ver más</a> |
+            <a href={% url "modificar_alumno" alumno.id %}>Modificar</a>
         </li>
         {% endfor %}
     </ul>
@@ -38,7 +34,6 @@
     <p>No hay alumnos registrados</p>
     {% endif %}
 
-    <h2>📜 Recordá:</h2>
+    <h3>📜 Recuerda:</h3>
     <p>La información compartida en el listado es confidencial. Su uso debe ser responsable y respetuoso, priorizando siempre el bienestar y la privacidad de todos los miembros de la plataforma.</p>
-</body>
-</html>
+    {% endblock contenido %}

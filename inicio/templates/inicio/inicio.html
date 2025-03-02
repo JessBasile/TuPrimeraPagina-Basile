@@ -1,18 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <nav>
-        <a href={% url "inicio" %}>Inicio</a>
-        <a href={% url "crear_alumno" %}>Registración</a>
-        <a href={% url "listado_de_alumnos" %}>Listado</a>
-    </nav>
-    <h1>¡Bienvenido/a a tu espacio de aprendizaje colaborativo!</h1>
-<h2>Podras registrarte como alumno y acceder a todos los beneficios proporcionados por la plataforma.</h2>
+{% extends "template_base.html" %}
+
+<title>{% block title_head %}Inicio{% endblock title_head %}</title>
+
+{% block contenido %}
+<h2>¡Bienvenido/a al espacio de apendizaje!</h2>
+<h3>Podras registrarte como alumno y acceder a todos los beneficios proporcionados por la plataforma.</h3>
 <p>Este sitio está diseñado para facilitar tu experiencia académica, permitiéndote no solo registrarte como alumno y loguearte, sino también conectar con tus compañeros y acceder a material relevante para tus estudios.</p>
 <p>Aquí podrás:</p>
 <ul style="list-style: none">
@@ -50,5 +42,4 @@
             window.location.href = url;
         });
     </script>
-</body>
-</html>
+{% endblock contenido %}

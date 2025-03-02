@@ -1,0 +1,20 @@
+{% extends "template_base.html" %}
+
+<title>{% block title_head %}Modificación{% endblock title_head %}</title>
+
+{% block contenido %}
+    <h3>✍️ Modificación del Registro:</h3>
+    <p>Podrás efectuar modificaciones sobre tu registración en caso de error o actualización a través del siguiente formulario. Asegúrate de que los datos ingresados sean correctos y estén actualizados, ya que esta información será utilizada para la identificación y comunicación.</p>
+    
+    <h2>Formulario de Modificación de Registros</h2>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{formulario}}
+
+        <input type="submit" value="Modificar Registro">    
+    </form>
+
+    <h3> ⚠️ Importante:</h3>
+<p>Recuerda ser cuidadoso con los cambios, ya que la información registrada será utilizada para el envío de notificaciones importantes y el acceso a materiales específicos según tu institución y asignatura. Verifica bien antes de confirmar las modificaciones ¡Muchas gracias!</p>
+{% endblock contenido %}

@@ -1,0 +1,20 @@
+{% extends "template_base.html" %}
+
+<title>{% block title_head %}Eliminación{% endblock title_head %}</title>
+
+{% block contenido %}
+    <h3>🗑️ Eliminar el Registro:</h3>
+    <p>Podrás eliminar tu registro si es necesario, pero ten en cuenta que esta acción es irreversible. Para volver a registrarte, deberás ingresar nuevamente toda la información desde cero.</p>
+    
+    <h2>Confirmación de Eliminado</h2>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <p>¿Está seguro que desea eliminar el registro del alumno/a: {{alumno}}</p>
+
+        <input type="submit" value="Confirmar">    
+    </form>
+
+    <h3> ⚠️ Importante:</h3>
+<p>Una vez eliminado el registro, no podrás recuperarlo. Recuerda estar seguro de realizarlo.</p>
+{% endblock contenido %}

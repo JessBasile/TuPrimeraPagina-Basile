@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from datetime import datetime
 from inicio.models import Alumno
-from inicio.forms import CrearAlumno, BuscarAlumno
+from inicio.forms import CrearAlumno, BuscarAlumno, ModificarAlumno
+from django.views.generic.edit import UpdateView, DeleteView
+from django.urls import reverse_lazy
 
 # Create your views here.
 def inicio(request):
@@ -52,3 +54,39 @@ def listado_de_alumnos(request):
         if materia:
             alumnos = alumnos.filter(materia__icontains=materia)
     return render(request, 'inicio/listado_de_alumnos.html', {'alumnos': alumnos, 'formulario': formulario})
+
+def ver_alumno(request, alumno_id):
+    alumno = Alumno.objects.get(id=alumno_id)
+    return render(request, 'inicio/ver_alumno.html', {'alumno': alumno})
+
+# VISTAS COMUNES
+def eliminar_alumno(request, alumno_id):
+    alumno = Alumno.objects.get(id=alumno_id)
+    alumno.delete()
+    return redirect('listado_de_alumnos')
+
+def modificar_alumno(request, alumno_id):
+    
+    alumno = Alumno.objects.get(id=alumno_id)
+    
+    if request.method == "POST":
+        formulario = ModificarAlumno(request.POST, instance=alumno)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect('listado_de_alumnos')
+    else:
+        formulario = ModificarAlumno(instance=alumno)
+        
+    return render(request, 'inicio/modificar_alumno.html', {'formulario': formulario})
+
+# CLASES BASADAS EN VISTAS
+class ModificarAlumnoVista(UpdateView):
+    model = Alumno
+    template_name = "inicio/CBV/modificar_alumno.html"
+    fields = "__all__"
+    success_url = reverse_lazy('listado_de_alumnos')
+    
+class EliminarAlumnoVista(DeleteView):
+    model = Alumno
+    template_name = "inicio/CBV/eliminar_alumno.html"
+    success_url = reverse_lazy('listado_de_alumnos')
