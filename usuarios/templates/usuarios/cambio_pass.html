@@ -1,0 +1,14 @@
+{% extends "template_base.html" %}
+
+<title>{% block title_head %}Cambio Contraseña{% endblock title_head %}</title>
+
+{% block contenido %}
+<h2>🔑 Cambio de Contraseña</h2>
+
+    <form action={% url "cambiar_pass" %} method="POST">
+        {% csrf_token %}
+        {{form}}
+
+        <input type="submit" value="Cambiar">    
+    </form>
+{% endblock contenido %}

@@ -1,4 +1,4 @@
-from inicio.views import inicio, saludo, crear_alumno, listado_de_alumnos, ver_alumno, eliminar_alumno, modificar_alumno, ModificarAlumnoVista, EliminarAlumnoVista
+from inicio.views import inicio, saludo, crear_alumno, listado_de_alumnos, ver_alumno, eliminar_alumno, ModificarAlumnoVista, EliminarAlumnoVista
 from django.urls import path
 
 urlpatterns = [

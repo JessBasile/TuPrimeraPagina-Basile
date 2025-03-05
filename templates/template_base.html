@@ -23,8 +23,8 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
             <a class="navbar-brand js-scroll-trigger" href="#page-top">
-                <span class="d-block d-lg-none">Clarence Taylor</span>
-                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="{% static 'assets/img/profile.jpg' %}" alt="..." /></span>
+                <span class="d-block d-lg-none">Jesica Basile</span>
+                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="{% static 'assets/img/profile-jess.png' %}" alt="..." /></span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -32,13 +32,28 @@
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href={% url "inicio" %}>Inicio</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href={% url "crear_alumno" %}>Registración</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href={% url "listado_de_alumnos" %}>Listado</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Interests</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#awards">Awards</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Acerca de Mí</a></li>
+                    {% if  request.user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href={% url "informacion_perfil" %} style="color:rgba(228, 176, 119, 0.67)">
+                        {% if request.user.infoextra.avatar %}
+                          <img src={{request.user.infoextra.avatar.url}} alt="" height='40px'>
+                        {% endif %}
+                        {{request.user.username}}
+                    </a></li>
+                    <li class="nav-item">
+                        <form action={% url "logout" %} method="POST">
+                            {% csrf_token %}
+                            <input class="btn btn-primary" style="background-color:rgb(239, 84, 53); color: black; border-color: #8B4513;" type="submit" value="Cerrar sesion">
+                        </form>
+                    </li>
+                    {% else %}
+                    <li class="nav-item"><a class="btn btn-primary" href={% url "login" %} style="background-color:rgb(161, 210, 123); color: black; border-color: #8B4513;">Iniciar sesion</a></li>
+                    <li class="nav-item"><a class="btn btn-primary" href={% url "registro" %} style="background-color:rgb(115, 192, 212); color: black; border-color: #8B4513;">Registrarse</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>
-        <!-- Page Content-->
+        {% comment %} <!-- Page Content-->
         <div class="container-fluid p-0">
             <hr class="m-0" />
             <!-- Experience-->
@@ -220,7 +235,7 @@
                     </div>
                 </div>
             </section>
-        </div>
+        </div> {% endcomment %}
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

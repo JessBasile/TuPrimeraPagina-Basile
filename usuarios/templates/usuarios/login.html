@@ -1,0 +1,18 @@
+{% extends "template_base.html" %}
+
+<title>{% block title_head %}Login{% endblock title_head %}</title>
+
+{% block contenido %}
+<h2>Iniciar Sesión</h2>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{formulario}}
+
+        {% if error %}
+        <p style="color: red;">{{ error }}</p>
+        {% endif %}
+
+        <input type="submit" value="Iniciar Sesion">    
+    </form>
+{% endblock contenido %}

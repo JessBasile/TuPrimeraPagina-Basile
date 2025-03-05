@@ -4,9 +4,15 @@
 
 {% block contenido %}
 <h2>Información del alumno/a {{alumno.nombre}} {{alumno.apellido}}</h2>
+{% if alumno.avatar_alumno %}
+    <img src="{{ alumno.avatar_alumno.url }}" alt="">
+{% else %}
+    <p>No tienes un avatar cargado.</p>
+{% endif %}
 <ul>
     <li>email: {{alumno.email}}</li>
     <li>Institución: {{alumno.institucion}}</li>
     <li>Materia: {{alumno.materia}}</li>
+    <li>Fecha de creación: {{alumno.fecha_creacion}}</li>
 </ul>
 {% endblock contenido %}

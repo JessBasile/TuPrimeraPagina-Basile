@@ -199,7 +199,7 @@ Para el caso específico de modificar el registro, se creará una nueva clase de
 from inicio.models import Alumno
 ```
 
-16. **Clases basadas en vistas:**
+16. **Clases basadas en vistas (CBV):**
 Cuando se realizan clases basadas en vistas, se crea una nueva carpeta para colocar las clases basadas en vistas `CBV` dentro de la carpetas de templates ---> inicio.  Dentro del archivo views.py se deberá primero importar: 
 ```
 from django.views.generic.edit import UpdateView 
@@ -213,3 +213,5 @@ Esta última, es una funcionalidad que permite hacer lo mismo que el redirect pe
 path('modificar-alumno/<int:pk>', ModificarAlumnoVista.as_view(), name='modificar_alumno'),
 ```
 En el caso del eliminado, se efectúan los mismos pasos solo que en lugar de importar UpdateView en django.views se importará `DeleteView`. **Para eliminar en el caso de CBV será necesario un template porque requerirá CONFIRMAR**.
+
+17. **

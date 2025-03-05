@@ -1,0 +1,15 @@
+{% extends "template_base.html" %}
+
+<title>{% block title_head %}Editar Perfil{% endblock title_head %}</title>
+
+{% block contenido %}
+<h2>✏️ Edición del Perfil</h2>
+
+    <form action={% url "editar_perfil" %} method="POST" enctype='multipart/form-data'>
+        {% csrf_token %}
+        {{formulario}}
+
+        <input type="submit" style="margin-left: 20px" value="Editar">    
+    </form>
+<a href={% url "cambiar_pass" %} style="margin-left: 20px">Cambiar Contraseña<a>
+{% endblock contenido %}

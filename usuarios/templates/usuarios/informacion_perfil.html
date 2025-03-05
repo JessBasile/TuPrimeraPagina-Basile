@@ -1,0 +1,22 @@
+{% extends "template_base.html" %}
+
+<title>{% block title_head %}Info. Perfil{% endblock title_head %}</title>
+
+{% block contenido %}
+<h2>👤 Información del perfil</h2>
+
+{% if usuario.infoextra.avatar %}
+    <img src="{{ usuario.infoextra.avatar.url }}" alt="Avatar de {{ usuario.username }}" height="150px" style="border-radius: 50%;">
+{% else %}
+    <p>No tienes un avatar cargado.</p>
+{% endif %}
+
+<ul>
+    <li>Nombre de Usuario: {{ usuario.username }}</li>
+    <li>Email: {{ usuario.email }}</li>
+    <li>Nombre: {{ usuario.first_name }}</li>
+    <li>Apellido: {{ usuario.last_name }}</li>
+    <li>Asignatura: {{ usuario.infoextra.asignatura }}
+</ul>
+<a href="{% url 'editar_perfil' %}" style="margin-left: 20px;">Editar Información</a>
+{% endblock contenido %}
