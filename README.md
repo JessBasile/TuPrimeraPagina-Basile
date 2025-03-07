@@ -3,7 +3,7 @@
 <img align="right" alt="Python" width="250" src="https://github.com/JessBasile/TuPrimeraPagina-Basile/raw/main/imagenes/python.gif">
 
 El presente proyecto se basa en la creación de un sitio web basado en Python con la implementación del firmware Django, a través del editor Visual Studio Code.
-Se espera que a través del sitio web se puedan ingresar datos por medio de un formulario, listar esos datos, buscar datos dentro de la base de datos creada anteriormente con un formulario, loguearse y acceder a material de estudio acorde a la asignatura declarada por el usuario/estudiante. El siguiente video sintetiza la funcionalidad del sitio ([Link AQUÍ](https://www.youtube.com/watch?v=8oUVstyhtAw)).
+Se espera que a través del sitio web se puedan ingresar datos por medio de un formulario, listar esos datos, buscar datos dentro de la base de datos creada anteriormente con un formulario, loguearse y acceder a material de estudio acorde a la asignatura declarada por el usuario/estudiante. El siguiente video sintetiza la funcionalidad del sitio ([Link AQUÍ](https://www.youtube.com/watch?v=xt91jyZyDKE)).
 
 1. **Configuración Inicial de Git y GitHub:**
 Inicialmente se realiza la conexión y configuración de git al repositorio con los comandos correspondientes, antes de ello se recomienda configurar (y en caso que ya se haya efectuado) corroborar los datos de esa configuración global guardados en la carpeta de usuario
@@ -132,11 +132,11 @@ INSTALLED_APPS = [
 ```
 
 10. **Creaciones de otras vistas dentro de la misma aplicación:**
-Se proceden a crear otras vistas dentro de la misma aplicación para lo cual se tendrán que realizar los mismos pasos efectuados anteriormente para la primera vista (iniciao). Por lo tanto, se configurará cada una de las nuevas vistas dentro de views.py con su nuevo nombre (tal como se hizo con inicio), crear un template dentro de templates/inicio con el mismo nombre que la vista .html y definir la url dentro del archivo urls.py importando y agregando su path.
-En una de las vistas creadas en el presente proyecto se utilizaron diccionarios o contextos que se le pasaron al template para que cargue correctamente cierta información como puede ser hora y fecha actual con `datetime.now()` o un formulario con `{formulario}`.
+Se proceden a crear otras vistas dentro de la misma aplicación para lo cual se realizarán los mismos pasos efectuados anteriormente para la primera vista (inicio). Por lo tanto, se configurará cada una de las nuevas vistas dentro de views.py con su nuevo nombre (tal como se hizo con inicio), crear un template dentro de templates/inicio con el mismo nombre que la vista .html y definir la url dentro del archivo urls.py importando y agregando su path.
+En una de las vistas creadas en el presente proyecto se utilizaron diccionarios o contextos que se le proporcionan al template para que cargue correctamente cierta información como puede ser hora y fecha actual con `datetime.now()` o un formulario con `{formulario}`.
 
 11. **Incorporación de navegación en los templates:**
-En cada archivo .html se debe configurar un menú de navegación con hipervínculos, permitiendo el acceso a las distintas páginas del proyecto. Esto se logra utilizando la etiqueta <nav> y la función url de Django para generar las rutas dinámicamente a través del nombre que se les asignó. Ejemplo del código a continuación:
+En cada archivo .html se debe configurar un menú de navegación con hipervínculos, permitiendo el acceso a las distintas páginas del proyecto. Esto se logra utilizando la etiqueta <nav> y la función url de Django para generar las rutas dinámicamente a través del nombre que se les asignó. Ejemplo del código de la navegación sobre algunos templates a continuación:
 ```
     <nav>
         <a href={% url "inicio" %}>Inicio</a>
@@ -151,11 +151,11 @@ El archivo incialmente deberá realizar la importación correspondiente:
 ```
 from django.db import models
 ```
-La creación de los modelos son similar a las clases que contendrá atributos en los distintos campos (al igual que el caso de los formularios). Luego de su elaboración, se deberá "conectar" con la base de datos mediante el siguiente comando en terminal:
+La creación de los modelos son similar a las clases que contendrán atributos en los distintos campos (al igual que el caso de los formularios). Luego de su elaboración, se deberá "conectar" con la base de datos mediante el siguiente comando en terminal:
 ```
 python manage.py makemigrations
 ```
-De ese modo, se crea un archivo intermedio dentro de la carpeta migrations en la carpeta de la aplicación denominado `0001_initial.py` y tendrá número ascendente por cada cambio que se migre. De todos modos, los cambios no se encuentran impactados todavía en la base y para ello se ejecutará el comando migrate que trasladará esas migraciones:
+De ese modo, se crea un archivo intermedio dentro de la carpeta migrations que se aloja dentro de la carpeta de la aplicación (en este caso, inicio) denominado `0001_initial.py` y tendrá número ascendente por cada cambio que se migre. De todos modos, los cambios no se encuentran impactados todavía en la base y para ello se ejecutará el comando migrate que trasladará esas migraciones:
 ```
 python manage.py migrate
 ```
@@ -166,23 +166,23 @@ Se podrán corroborar las migraciones en el archivo db.sqlite3.
 13. **Elaboración de formularios en las distintas vistas:**
 Los formularios se implementan a través de los templates de cada vista y estarán basados en el modelo de la aplicación. Sin embargo, es recomendable crear un archivo `forms.py` dentro de la aplicación, donde se definan los diferentes formularios que se utilizarán en las distintas vistas correspondientes.
 Si cada aplicación dentro del proyecto requiere formularios, lo ideal es que cada una tenga su propio archivo forms.py para organizar y mantener el código de manera más estructurada.
-Para el caso del formulario para inserción de datos es bajo método `POST` con la siguiente estructura de cración en html:
+Para el caso del formulario para inserción de datos es bajo método `POST` con la siguiente estructura de creación en html:
 ```
 <form action="" method="POST">
 ```
 Es utilizado para enviar datos al servidor y guardarlos en la base.
 Los datos no son visibles en la URL. Éste método también podrá ser utilizado para modificación y eliminación de datos.
-Para el caso de formulario destinado a consultas de los datos, no se especifica el método, y por lo tanto, es `GET` cuya finalidad es consulta o filtrado de datos.
+Para el caso de los formularios destinados a consultas de datos, no se especifica el método, y por lo tanto, por default es `GET` cuya finalidad es consulta o filtrado de datos.
 En el archivo views.py en la siguiente línea de configuración sobre el comportamiento de los datos proporcionados a través del formulario, se verifica que todos los campos cumplen con las caracteristicas especificadas en forms.py:
 ```
 if formulario.is_valid():
 ```
-Y en la sección cleaned_data extrae los datos validados del formulario.
+Y en la sección `cleaned_data` se extraen los datos validados del formulario.
 Por último, los templates que contienen formularios con condicionales utilizan `{& if %}`, `{% else %}`, `{% for %}`, etc.
 
 14. **Herencia de templates:**
-Para evitar la repetición de código en los templates, se implementa la herencia de templates y se recurre a utilizar un bootstrap de la página https://startbootstrap.com/ cuya estructura html se copia en un template denominado `template_base.html` dentro de la carpeta templates en la carpeta proyectoDjango y dentro de inicio se "extraen" los archivos que esa plantilla elegida de bootstrap contiene dentro de una carpeta denominada `static` (en la carpeta de la aplicación inicio).
-Una vez creado el template base, se procederá a borrar en cada template de la aplicación inicio el código que se repite en todas, dejando solo el contenido específico de cada página/template. Asimismo, se incroporará al inicio de cada template la siguiente primera línea de código que "importará" el contenido base del template general:
+Para evitar la repetición de código en los templates, se implementa la herencia de templates y se recurre a utilizar un bootstrap de la página https://startbootstrap.com/ cuya estructura html se copia en un template denominado `template_base.html` dentro de la carpeta templates en la carpeta proyectoDjango y dentro de inicio se "extraen" (dado que el archivo descargado de la página se encuentra comprimido) los archivos que esa plantilla elegida de bootstrap contiene dentro de una carpeta denominada `static` (en la carpeta de la aplicación inicio).
+Una vez creado el template base, se procederá a borrar en cada template de la aplicación inicio (y todas las demás aplicaciones) el código que se repite en todas, dejando solo el contenido específico de cada página/template. Asimismo, se incroporará al inicio de cada template la siguiente primera línea de código que "importará" el contenido base del template general:
 ```
 {% extends "template_base.html" %}
 ```
@@ -193,15 +193,15 @@ Para que funcione exitosamente se incorpora un `block` en el template_base (ante
 ```
 
 15. **Creación de Formularios con ModelForm:**
-Para permitir la edición de registros, se acrea un formulario en forms.py utilizando `ModelForm` con una sub-clase dentro `Meta`, que permitirá efectuar modificaciones y otro tipo de acciones sobre los registros.
+Para permitir la edición de registros, se crea un formulario en forms.py utilizando `ModelForm` con una sub-clase dentro `Meta`, que permitirá efectuar modificaciones y otro tipo de acciones sobre los registros.
 Luego se incorporan tres vistas (con sus correspondientes urls) para poder eliminar registros, ver registros/consultarlos y modificar ese registro. Asimismo, en listado_de_alumos.html se deberá incorporar los links que deriven a las urls con interactividad que ejecuten esa acción ya sea eliminar, modificar o solo consultar.
-Para el caso específico de modificar el registro, se creará una nueva clase dentro de forms.py `"ModificarAlumno"` con forms.ModelForm y Meta que permitirá identificar cierta configuración de la cual se puede especificar un modelo "Alumno" que lo deberé importar con:
+Para el caso específico de modificar el registro, se creará una nueva clase dentro de forms.py `"ModificarAlumno"` con forms.ModelForm y Meta que permitirá identificar cierta configuración de la cual se puede especificar un modelo "Alumno" que se deberá importar con:
 ```
 from inicio.models import Alumno
 ```
 
 16. **Clases basadas en vistas (CBV):**
-Cuando se realizan clases basadas en vistas, se crea una nueva carpeta para colocar las clases basadas en vistas `CBV` dentro de la carpetas de templates ---> inicio.  Dentro del archivo views.py se deberá primero importar: 
+Cuando se realizan clases basadas en vistas, se crea una nueva carpeta para alojar las mismas, denominada `CBV` dentro de la carpeta de templates ---> inicio(en este caso particular).  Dentro del archivo views.py se deberá primero importar: 
 ```
 from django.views.generic.edit import UpdateView 
 ```
@@ -216,22 +216,33 @@ path('modificar-alumno/<int:pk>', ModificarAlumnoVista.as_view(), name='modifica
 En el caso del eliminado, se efectúan los mismos pasos solo que en lugar de importar UpdateView en django.views se importará `DeleteView`. **Para eliminar en el caso de CBV será necesario un template porque requerirá CONFIRMAR**.
 
 17. **Incorporación en el models.py un campo fecha:**
-En este caso particular, como la base de datos ya tiene datos cargados el nuevo campo (fecha) que se decide incorporar se lo efectúa con la caratceristica de por ser nulo, para que de ese modo, no surjan inconvenientes con los registros cargados antes de esta modificación. La línea de código que se incorpora en la class Alumno es:
+En este caso particular, como la base de datos ya tiene datos cargados el nuevo campo (fecha) que se decide incorporar se lo efectúa con la caratceristica de ser nulo, para que de ese modo, no surjan inconvenientes con los registros cargados antes de la modificación. La línea de código que se incorpora en la class Alumno es:
+```
 fecha_creacion = models.DataField(null=True)
+```
 y luego serán ejecutados los comandos:
+```
 python manage.py makemigrations
 Python manage.py migrate
-Django detectó el cambio en el modelo y generó una nueva migración 0002_alumno_fecha_creacion.py en la carpeta migrations en la aplicación inicio. Posteriormente deberá ser incorporada esa modificación en la views.py, en el forms.py y models.py.
+```
+Django detectará el cambio en el modelo y generará una nueva migración denominada `0002_alumno_fecha_creacion.py` en la carpeta migrations en la aplicación inicio. Posteriormente deberá ser incorporada esa modificación en la views.py, en el forms.py y models.py.
 En el caso del forms.py en la class CrearAlumno, se incorporará del siguiente modo:
+```
 fecha_creacion = forms.DateField(required=False, widget=forms.DateInput(attrs={'type': 'date'}))
+```
 Las modificaciones abordadas con el widget permite la aparición del formato de la fecha que tiene el campo que deberá ser completado, para enviar inconvenientes al usuario al momento de ingresar o modificar un registro.
 
-18. **Creación de aplicación "usuarios":**
+18. **Creación de aplicación "USUARIOS":**
 Inicialmente se crea una aplicación nueva con el siguiente código:
+```
 python manage.py startapp usuarios
+```
 y luego se debe incorporar en el archivo settings.py en la carpeta proyectoDjango en INSTALLED_APPS 'usuarios', y en urls.py de la misma carpeta incorporar el PATH en urlpatterns:
-
-y posteriormente, se deberá crear un archivo urls.y dentro de la nueva aplicación "usuarios" e incorporar la siguiente información:
+```
+'usuarios',
+```
+y posteriormente, se deberá crear un archivo urls.y dentro de la nueva aplicación "usuarios" incorporar la siguiente información:
+```
 from django.urls import path
 from usuarios.views import login, registro
 
@@ -240,11 +251,12 @@ urlpatterns = [
     # path('logout/', logout, name='logout'),
     # path('registro/', registro, name='registro'),
 ]
-Y luego, configurar views.py de la carpeta proyectoFjango:
-(AGREGAR)
+```
+Y luego, configurar views.py de la carpeta usuarios.
 
-19. **Login: Creación template sobre login:**
-Se crea una carpeta de templates/usuarios dentro de la aplicación usuario. Posteriormente se creará el archivo login.html con el siguiente código:
+19. **Login - Creación template sobre login:**
+Se crean dos carpetas en el siguiente orden templates/usuarios dentro de la aplicación usuarios. Posteriormente se creará el archivo `login.html` con el siguiente código:
+```
 {% extends "template_base.html" %}
 
 <title>{% block title_head %}Login{% endblock title_head %}</title>
@@ -263,33 +275,48 @@ Se crea una carpeta de templates/usuarios dentro de la aplicación usuario. Post
         <input type="submit" value="Iniciar Sesion">    
     </form>
 {% endblock contenido %}
-y en el template base, se colocará un "botón" para iniciar sesión y en la barra de navegación información sobre el usuario cuando se encuentra logueado con la siguiente línea de código:
+```
+Y en el template base, se colocará un "botón" para iniciar sesión, asi como también, información en la barra de navegación sobre el usuario cuando se encuentra logueado con la siguiente línea de código:
+```
 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">{{request.user.username}}</a></li>
-Asimismo, para poder realizar pruebas, se creará un "super-usuario con las siguientes líneas de código directamente en terminal:
+```
+Asimismo, para poder realizar pruebas, se creará un "super-usuario" con las siguientes líneas de código directamente en terminal:
+```
 python manage.py createsuperuser
 admin
-Esta creación puede verificarse en la base de datos, y ya comenzará a figurar el nombre del usuario una vez que se encuentra logueado en la barra de navegación, tal como fue configurado.
+```
+La creación de ese super-usuario puede verificarse en la base de datos, y ya comenzará a figurar el nombre del usuario una vez que se encuentra logueado en la barra de navegación, tal como fue configurado.
 
 20. **Logout:** 
 En primer lugar, se realizará una importación de una CBV desde url.py ubicado en la aplicación usuarios:
+```
 from django.contrib.auth.views import LogoutView
+```
 y posteriormente el path de logout:
+```
 path('logout/', LogoutView.as_view(template_name='usuarios/logout.html'), name='logout'),
-Se creará un template logout.html que cuente solo con la leyenda que aclare que la sesión fue cerrada exitosamente y en el template base, se deberá incorporar un form con action que especifique la url logout, del siguiente modo:
+```
+Se creará un template `logout.html` que cuente solo con la leyenda que aclare que la sesión fue cerrada exitosamente y en el template base, se deberá incorporar un form con action que especifique la url logout, del siguiente modo:
+```
 <li class="nav-item">
                         <form action={% url "logout" %} method="POST">
                             {% csrf_token %}
                             <input class="btn btn-primary" style="background-color:rgb(239, 84, 53); color: black; border-color: #8B4513;" type="submit" value="Cerrar sesion">
                         </form>
                     </li>
-Django proporciona un apartado especial denominado "admin" que no debería tener acceso un usuario "común", sino desarrolladores o personal capacitado que requiere utilizarlo. Esto se logra mediante el link: http://127.0.0.1:8000/admin/login/?next=/admin/ en el que se observa la captura de la derecha y se podrán ingresar los datos del super-usuario creado. (django-admin.jpge)
+```
+De ese modo, Django proporciona un apartado especial denominado "admin" que no debería tener acceso un usuario "común", sino desarrolladores o personal capacitado que requiere utilizarlo. Esto se logra mediante el link: http://127.0.0.1:8000/admin/login/?next=/admin/ en el que se observa la captura de la derecha y se podrán ingresar los datos del super-usuario creado.
+
+<img align="right" alt="Python" width="250" src="https://github.com/JessBasile/TuPrimeraPagina-Basile/raw/main/imagenes/django-admin.jpge">
+
 Para poder visualizar la información de la base de datos correctamente en este apartado, se deberá importar en el archivo admin.py dentro de la aplicación inicio, lo siguiente:
+```
 from django.contrib import admin
 from inicio.models import Alumno
 
 # Register your models here.
 admin.site.register(Alumno)
-(AGREGAR)
+```
 Las últimas dos lineas de código permiten registrar el modelo de alumnos y modelo para el manejo de usuarios/perfil.
 
 21. **Implementación de mixin & decorador:**
@@ -381,9 +408,9 @@ Posteriormente se modifican las vistas crear_alumno y modificar_alumno. En el ca
 30. **Incorporación de "Sobre Mí":**
 
 31 **Video explicativo del proyecto:**
-Se realizó un video explicativo ([Link AQUÍ](https://www.youtube.com/watch?v=8oUVstyhtAw)) que resume la funcionalidad de cada sección del sitio web diseñado con Python a través de Django. Asimismo, a continuación se expone un gif que resume su contenido:
+Se realizó un video explicativo ([Link AQUÍ](https://www.youtube.com/watch?v=xt91jyZyDKE)) que resume la funcionalidad de cada sección del sitio web diseñado con Python a través de Django. Asimismo, a continuación se expone un gif que resume su contenido:
 
-<img align="right" alt="qr_wifly" src="https://github.com/JessBasile/TuPrimeraPagina-Basile/raw/main/imagenes/pythonProyecto-de-Python-con-Django.gif"> &nbsp;<br>
+<img align="right" alt="qr_wifly" src="https://github.com/JessBasile/TuPrimeraPagina-Basile/raw/main/imagenes/Proyecto-de-Python-con-Django.gif"> &nbsp;<br>
 
 ___
 <h2 align="center">¡Muchas gracias por su visita! <img src="https://github.com/ABSphreak/ABSphreak/blob/master/gifs/Hi.gif" width="30px"></h2>
