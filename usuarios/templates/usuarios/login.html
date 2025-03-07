@@ -3,8 +3,8 @@
 <title>{% block title_head %}Login{% endblock title_head %}</title>
 
 {% block contenido %}
-<h2>Iniciar Sesión</h2>
-
+<h2>🔓 Iniciar Sesión</h2>
+<p>Para poder iniciar sesión debes encontrarte registrado previamente.</p>
     <form action="" method="POST">
         {% csrf_token %}
         {{formulario}}
@@ -15,4 +15,6 @@
 
         <input type="submit" value="Iniciar Sesion">    
     </form>
+<h3 style="margin-top: 20px;">🚨 Importante:</h3>
+<p>Luego de iniciar sesión, si todavía no se efectuó, deberás editar el usuario y declarar la asignatura correspondiente para acceder al material de estudio.</p>
 {% endblock contenido %}

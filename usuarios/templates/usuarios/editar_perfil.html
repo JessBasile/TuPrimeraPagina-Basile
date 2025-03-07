@@ -4,7 +4,7 @@
 
 {% block contenido %}
 <h2>✏️ Edición del Perfil</h2>
-
+<p>En esta sección será recomendable seleccionar una asignatura para poder acceder al material de estudio. Además, podrás editar el avatar agregando una foto de perfil.</p>
     <form action={% url "editar_perfil" %} method="POST" enctype='multipart/form-data'>
         {% csrf_token %}
         {{formulario}}

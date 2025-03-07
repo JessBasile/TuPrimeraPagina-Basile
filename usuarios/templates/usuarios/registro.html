@@ -3,12 +3,14 @@
 <title>{% block title_head %}Registro{% endblock title_head %}</title>
 
 {% block contenido %}
-<h2>Registro</h2>
-
+<h2>📝 Registro</h2>
+<p>¡Bienvenido/a! Completa el formulario para registrarte y poder iniciar sesión.</p>
     <form action={% url "registro" %} method="POST">
         {% csrf_token %}
         {{formulario}}
 
         <input type="submit" value="Registrarse">    
     </form>
+<h3 style="margin-top: 20px;">🚨 Importante:</h3>
+<p>Luego de registrarte, deberás editar el usuario y declarar la asignatura correspondiente para acceder al material de estudio.</p>
 {% endblock contenido %}

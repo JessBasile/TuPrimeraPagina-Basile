@@ -5,7 +5,7 @@
 {% block contenido %}
 <h2>Información del alumno/a {{alumno.nombre}} {{alumno.apellido}}</h2>
 {% if alumno.avatar_alumno %}
-    <img src="{{ alumno.avatar_alumno.url }}" alt="">
+    <img src="{{ alumno.avatar_alumno.url }}" alt="" height="150px" style="border-radius: 50%;">
 {% else %}
     <p>No tienes un avatar cargado.</p>
 {% endif %}

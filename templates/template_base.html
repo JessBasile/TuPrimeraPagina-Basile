@@ -32,13 +32,22 @@
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href={% url "inicio" %}>Inicio</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href={% url "crear_alumno" %}>Registración</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href={% url "listado_de_alumnos" %}>Listado</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Acerca de Mí</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href={% url "sobre_mi" %}>Sobre Mí</a></li>
                     {% if  request.user.is_authenticated %}
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href={% url "informacion_perfil" %} style="color:rgba(228, 176, 119, 0.67)">
-                        {% if request.user.infoextra.avatar %}
-                          <img src={{request.user.infoextra.avatar.url}} alt="" height='40px'>
+                        {% if request.user.infoextra.asignatura %}
+                            {% if request.user.infoextra.asignatura == "Administracion" %}
+                                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'Administracion' %}">Administración 📚</a></li>
+                            {% elif request.user.infoextra.asignatura == "Contabilidad" %}
+                                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'Contabilidad' %}">Contabilidad 📊</a></li>
+                            {% elif request.user.infoextra.asignatura == "RRHH" %}
+                                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'Rrhh' %}">RRHH 👥</a></li>
+                            {% endif %}
                         {% endif %}
-                        {{request.user.username}}
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href={% url "informacion_perfil" %} style="color:rgba(228, 176, 119, 0.67)">
+                    {% if request.user.infoextra.avatar %}
+                        <img src={{request.user.infoextra.avatar.url}} alt="" height='40px'>
+                    {% endif %}
+                    {{request.user.username}}
                     </a></li>
                     <li class="nav-item">
                         <form action={% url "logout" %} method="POST">

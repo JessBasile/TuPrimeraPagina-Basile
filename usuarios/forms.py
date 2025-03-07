@@ -18,13 +18,18 @@ class MiFormularioDeEdicion(UserChangeForm):
     first_name = forms.CharField(label='Nombre')
     last_name = forms.CharField(label='Apellido')
     avatar = forms.ImageField(required=False)
-    asignatura = forms.CharField(label='Asignatura', required=False)
+    ASIGNATURAS_CHOICES = [
+        ('', 'Selecciona una asignatura'), 
+        ('Administracion', 'Administracion'),
+        ('Contabilidad', 'Contabilidad'),
+        ('RRHH', 'RRHH'),
+    ]
     
+    asignatura = forms.ChoiceField(choices=ASIGNATURAS_CHOICES, required=False, label="Asignatura")
     class Meta:
         model = User
         fields = ['email', 'first_name', 'last_name']
 
-#Es agregado para mejorar el formulario del template y que no sea en inglés
 class MiCambioPassword(PasswordChangeForm):
     old_password = forms.CharField(label="Contaseña Actual", widget=forms.PasswordInput)
     new_password1 = forms.CharField(label="Nueva Contraseña", widget=forms.PasswordInput)

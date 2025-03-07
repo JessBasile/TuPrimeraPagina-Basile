@@ -1,4 +1,4 @@
-from inicio.views import inicio, saludo, crear_alumno, listado_de_alumnos, ver_alumno, eliminar_alumno, ModificarAlumnoVista, EliminarAlumnoVista
+from inicio.views import inicio, saludo, crear_alumno, listado_de_alumnos, ver_alumno, modificar_alumno, eliminar_alumno, ModificarAlumnoVista, EliminarAlumnoVista, Administracion, Contabilidad, Rrhh, sobre_mi
 from django.urls import path
 
 urlpatterns = [
@@ -13,4 +13,10 @@ urlpatterns = [
     # CLASES BASADAS EN VISTAS (CBV)
     path('modificar-alumno/<int:pk>', ModificarAlumnoVista.as_view(), name='modificar_alumno'),
     path('eliminar-alumno/<int:pk>/', EliminarAlumnoVista.as_view(), name='eliminar_alumno'),
+    #PATHs de asignaturas
+        path('materias/administracion/', Administracion, name='Administracion'),
+    path('materias/contabilidad/', Contabilidad, name='Contabilidad'),
+    path('materias/rrhh/', Rrhh, name='Rrhh'),
+    # VISTA SOBRE MI
+    path('sobre-mi/', sobre_mi, name='sobre_mi'),
 ]

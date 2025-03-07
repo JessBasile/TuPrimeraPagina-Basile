@@ -99,3 +99,20 @@ class EliminarAlumnoVista(LoginRequiredMixin, DeleteView):
     model = Alumno
     template_name = "inicio/CBV/eliminar_alumno.html"
     success_url = reverse_lazy('listado_de_alumnos')
+    
+#CLASES ASIGNATURAS
+@login_required
+def Administracion(request):
+    return render(request, 'inicio/materias/Administracion.html')
+
+@login_required
+def Contabilidad(request):
+    return render(request, 'inicio/materias/Contabilidad.html')
+
+@login_required
+def Rrhh(request):
+    return render(request, 'inicio/materias/Rrhh.html')
+
+#CLASE SOBRE MI
+def sobre_mi(request):
+    return render(request, 'inicio/sobre_mi.html')
