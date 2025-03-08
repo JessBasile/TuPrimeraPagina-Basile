@@ -3,10 +3,10 @@
 <img align="right" alt="Python" width="250" src="https://github.com/JessBasile/TuPrimeraPagina-Basile/raw/main/imagenes/python.gif">
 
 El presente proyecto se basa en la creación de un sitio web basado en Python con la implementación del firmware Django, a través del editor Visual Studio Code.
-Se espera que a través del sitio web se puedan ingresar datos por medio de un formulario, listar esos datos, buscar datos dentro de la base de datos creada anteriormente con un formulario, loguearse y acceder a material de estudio acorde a la asignatura declarada por el usuario/estudiante. El siguiente video sintetiza la funcionalidad del sitio ([Link AQUÍ](https://www.youtube.com/watch?v=xt91jyZyDKE)).
+Se espera que a través del sitio web se puedan ingresar datos por medio de un formulario, listar esos datos, buscar datos dentro de la base de datos creada anteriormente con otro formulario, loguearse y acceder a material de estudio acorde a la asignatura declarada por el usuario/estudiante. El siguiente video sintetiza la funcionalidad del sitio ([Link AQUÍ](https://www.youtube.com/watch?v=xt91jyZyDKE)).
 
 1. **Configuración Inicial de Git y GitHub:**
-Inicialmente se realiza la conexión y configuración de git al repositorio con los comandos correspondientes, antes de ello se recomienda configurar (y en caso que ya se haya efectuado) corroborar los datos de esa configuración global guardados en la carpeta de usuario
+Inicialmente se realiza la conexión y configuración de git al repositorio con los comandos correspondientes, antes de ello se recomienda configurar (y en caso que ya se haya efectuado) corroborar los datos de esa configuración global guardados en la carpeta de usuario:
 ```
 git config --global user.name "Jesica Basile" # Para configurar el nombre de usuario
 git config user.name # Para consultar el usuario configurado
@@ -18,11 +18,11 @@ git add . # Agrega los cambios del área de working al de staging area
 git commit -m "Descripción de los cambios" # Se utiliza para confirmar esos cambios y colocarles una descripción
 git push origin main # Último paso que envía los cambios al repositorio de GitHub
 ```
-Se pueden manejar estos mismos movimientos desde interface gráfica, pero en el caso del presente proyecto fue gestionado 100% desde la terminal. Se recomienda instalar la extensión `GitGraph` para observar el historial del cambios que fueron efectuados en la rama correspondiente desde el mismo Visual Studio Code.
+Se pueden efectuar estas mismas configuraciones desde interface gráfica, pero en el caso del presente proyecto fue gestionado 100% desde la terminal. Se recomienda instalar la extensión `GitGraph` para observar el historial de cambios que fueron efectuados en la rama correspondiente desde el mismo Visual Studio Code.
 Es importante, posicionarse en la "rama" adecuada en la que se desea trabajar en el repositorio, para evitar conflictos y versiones distintas en diferentes ubicaciones. La más común es main, y el posicionamiento en la misma se efectúa con el comando `git checkout main`, para ver todas las ramas `git branch` y para crear una nueva rama `git checkout -b nombre-de-la-rama`.
 
 2. **Configuración del Gitignore:**
-Antes de proceder a crear un entorno virtual que es recomendable para trabajar con django, será importante configurar el archivo `.gitignore` para evitar pushear cambios al repositorio que no deseamos o no es recomendable que sean visibles públicamente. Para ello, de un modo agilizado se recurre al sitio web `gitignore.io` seleccionando las tecnologías utilizadas, este caso partícular "Visual Studio Code", "Python" y "Django".
+Antes de proceder a crear un entorno virtual que es recomendable para trabajar con django, será relevante configurar el archivo `.gitignore` para evitar pushear cambios al repositorio que no deseamos o que no es recomendable que sean visibles públicamente. Para ello, de un modo agilizado se recurre al sitio web `gitignore.io` seleccionando las tecnologías utilizadas y nos proporciona el contenido que deberá tener, este caso partícular la tecnologías seleccionadas serásn "Visual Studio Code", "Python" y "Django".
 
 3. **Creación y uso de un entorno virtual:**
 En este tipo de proyectos se recomienda la creación de un entorno virtual en el cual se instalen y manejen solo las dependencias o paquetes específicos que requiere el proyecto y no todos los paquetes globales instalados localmente. A continuación se detallan los comandos para su creación y activación:
@@ -33,9 +33,9 @@ source venv/bin/actívate # Activación del entorno virtual
 
 4. **Instalación de Django:**
 
-<img align="right" alt="Django" width="80" src="https://github.com/JessBasile/TuPrimeraPagina-Basile/raw/main/imagenes/django-python-logo.png">
+<img align="right" alt="Django" width="100" src="https://github.com/JessBasile/TuPrimeraPagina-Basile/raw/main/imagenes/django-python-logo.png">
 
-Se recomienda activar el entorno virtual y proceder a instalar django para hacerlo dentro del entorno.
+Se recomienda activar el entorno virtual y proceder a instalar django para hacerlo dentro del entorno:
 ```
 pip install django # Para instalarse Django en el entorno virtual
 pip freeze # Para observar los paquetes que tiene instalado el entorno (para ello ya debe estar activado el mismo)
@@ -62,7 +62,7 @@ Se procede a iniciar el proyecto con Django ejecutando un comando que permite la
 ```
 django-admin startproject proyectoDjango .
 ```
-El `.` al final colabora para que el archivo `manage.py` sea creado en la carpeta raíz del proyecto, y además, la carpeta proyectoDjango con su `settings.py` (que contiene las configuraciones por defecto de nuestro proyecto).
+El `.` al final colabora para que el archivo `manage.py` sea creado en la carpeta raíz del proyecto, y además, la carpeta se garantiza que la carpeta proyectoDjango contenga su archivo de `settings.py` (que contendrá las configuraciones por defecto de nuestro proyecto).
 
 7. **Iniciar Servidor de desarrollo de Django con Python:**
 El proyecto utilizará diferentes `URLs` para acceder a distintas `vistas` a través del navegador. Las vistas se encargan de la lógica de la aplicación, interactuando con los `modelos` (que representan la estructura de la base de datos) y los `templates` (archivos HTML que muestran la información al usuario).
@@ -91,7 +91,7 @@ Aunque, dentro del mismo archivo se deberá importar una clase para que la vista
 ```
 from django.http import HttpResponse
 ```
-Para que se pueda acceder a la vista será necesario establecer path en el archivo urls.py dentro de la carpeta inicio, para ello, primero se configurará el archivo urls.py importando path:
+Para que se pueda acceder a la vista será necesario establecer path en el archivo urls.py dentro de la carpeta inicio, por consiguiente, primero se configurará el archivo urls.py importando path:
 ```
 from inicio.views import inicio
 from django.urls import path
@@ -132,7 +132,7 @@ INSTALLED_APPS = [
 ```
 
 10. **Creaciones de otras vistas dentro de la misma aplicación:**
-Se proceden a crear otras vistas dentro de la misma aplicación para lo cual se realizarán los mismos pasos efectuados anteriormente para la primera vista (inicio). Por lo tanto, se configurará cada una de las nuevas vistas dentro de views.py con su nuevo nombre (tal como se hizo con inicio), crear un template dentro de templates/inicio con el mismo nombre que la vista .html y definir la url dentro del archivo urls.py importando y agregando su path.
+Se proceden a crear otras vistas dentro de la misma aplicación para lo cual se realizarán los mismos pasos efectuados anteriormente para la primera vista (inicio). Por lo tanto, se configurará cada una de las nuevas vistas dentro de views.py con su nuevo nombre, crear un template dentro de templates/"nombre de la aplicación" con el mismo nombre que la vista .html y definir la url dentro del archivo urls.py importando y agregando su path.
 En una de las vistas creadas en el presente proyecto se utilizaron diccionarios o contextos que se le proporcionan al template para que cargue correctamente cierta información como puede ser hora y fecha actual con `datetime.now()` o un formulario con `{formulario}`.
 
 11. **Incorporación de navegación en los templates:**
@@ -155,7 +155,7 @@ La creación de los modelos son similar a las clases que contendrán atributos e
 ```
 python manage.py makemigrations
 ```
-De ese modo, se crea un archivo intermedio dentro de la carpeta migrations que se aloja dentro de la carpeta de la aplicación (en este caso, inicio) denominado `0001_initial.py` y tendrá número ascendente por cada cambio que se migre. De todos modos, los cambios no se encuentran impactados todavía en la base y para ello se ejecutará el comando migrate que trasladará esas migraciones:
+De ese modo, se crea un archivo intermedio dentro de la carpeta migrations que se aloja en la carpeta de la aplicación (en este caso, inicio) denominado `0001_initial.py` y tendrá número ascendente por cada cambio que se migre. De todos modos, los cambios no se encuentran impactados todavía en la base y para ello se ejecutará el comando migrate que trasladará esas migraciones:
 ```
 python manage.py migrate
 ```
@@ -181,31 +181,31 @@ Y en la sección `cleaned_data` se extraen los datos validados del formulario.
 Por último, los templates que contienen formularios con condicionales utilizan `{& if %}`, `{% else %}`, `{% for %}`, etc.
 
 14. **Herencia de templates:**
-Para evitar la repetición de código en los templates, se implementa la herencia de templates y se recurre a utilizar un bootstrap de la página https://startbootstrap.com/ cuya estructura html se copia en un template denominado `template_base.html` dentro de la carpeta templates en la carpeta proyectoDjango y dentro de inicio se "extraen" (dado que el archivo descargado de la página se encuentra comprimido) los archivos que esa plantilla elegida de bootstrap contiene dentro de una carpeta denominada `static` (en la carpeta de la aplicación inicio).
-Una vez creado el template base, se procederá a borrar en cada template de la aplicación inicio (y todas las demás aplicaciones) el código que se repite en todas, dejando solo el contenido específico de cada página/template. Asimismo, se incroporará al inicio de cada template la siguiente primera línea de código que "importará" el contenido base del template general:
+Para evitar la repetición de código en los templates, se implementa la `herencia de templates` y se recurre a utilizar un bootstrap de la página https://startbootstrap.com/ cuya estructura html se copia en un template denominado `template_base.html` dentro de la carpeta templates en la carpeta proyectoDjango; y dentro de inicio se "extrae" el archivo descargado de la web (dado que al momento de la descarga se encuentra comprimido). En síntesis, se extraen los archivos que esa plantilla elegida de bootstrap contiene dentro de una carpeta denominada `static` (en la carpeta de la aplicación inicio).
+Una vez creado el template base, se procederá a borrar en cada template de cada aplicación el código que se repite en todas, dejando solo el contenido específico de cada página/template. Asimismo, se incroporará en reemplazo, al inicio de cada template la siguiente primera línea de código que "importará" el contenido base del template general/base:
 ```
 {% extends "template_base.html" %}
 ```
 Para que funcione exitosamente se incorpora un `block` en el template_base (antes que termine todo el HTML) para indicar que se incorporará contenido en otros templates, con el siguiente código:
 ```
-    {% block contenido %}
-    {% endblock contenido %}
+    {% block contenido %} # inicio
+    {% endblock contenido %} # final
 ```
 
 15. **Creación de Formularios con ModelForm:**
 Para permitir la edición de registros, se crea un formulario en forms.py utilizando `ModelForm` con una sub-clase dentro `Meta`, que permitirá efectuar modificaciones y otro tipo de acciones sobre los registros.
-Luego se incorporan tres vistas (con sus correspondientes urls) para poder eliminar registros, ver registros/consultarlos y modificar ese registro. Asimismo, en listado_de_alumos.html se deberá incorporar los links que deriven a las urls con interactividad que ejecuten esa acción ya sea eliminar, modificar o solo consultar.
-Para el caso específico de modificar el registro, se creará una nueva clase dentro de forms.py `"ModificarAlumno"` con forms.ModelForm y Meta que permitirá identificar cierta configuración de la cual se puede especificar un modelo "Alumno" que se deberá importar con:
+Luego se incorporan tres vistas (con sus correspondientes urls) para poder eliminar registros, ver registros/consultarlos y modificar esos registro. Asimismo, en listado_de_alumos.html se deberán incorporar los links que deriven a las urls con interactividad que ejecuten esa acción ya sea eliminar, modificar o solo consultar.
+Para el caso específico de modificar el registro, se creará una nueva clase dentro de forms.py `"ModificarAlumno"` con `forms.ModelForm` y Meta que permitirá identificar cierta configuración de la cual se puede especificar un modelo "Alumno" que se deberá importar con:
 ```
 from inicio.models import Alumno
 ```
 
 16. **Clases basadas en vistas (CBV):**
-Cuando se realizan clases basadas en vistas, se crea una nueva carpeta para alojar las mismas, denominada `CBV` dentro de la carpeta de templates ---> inicio(en este caso particular).  Dentro del archivo views.py se deberá primero importar: 
+Cuando se realizan clases basadas en vistas, se crea una nueva carpeta para alojar las mismas, denominada `CBV` dentro de la carpeta de templates ---> inicio (en este caso particular).  Dentro del archivo views.py se deberá primero importar: 
 ```
 from django.views.generic.edit import UpdateView 
 ```
-Para utilizar un tipo de clase que nos proporciona Django UpdateView y también se deberá importar:
+Para utilizar un tipo de clase que nos proporciona Django `UpdateView`, pero también se deberá importar:
 ```
 from django.urls import reverse_lazy
 ```
@@ -216,7 +216,7 @@ path('modificar-alumno/<int:pk>', ModificarAlumnoVista.as_view(), name='modifica
 En el caso del eliminado, se efectúan los mismos pasos solo que en lugar de importar UpdateView en django.views se importará `DeleteView`. **Para eliminar en el caso de CBV será necesario un template porque requerirá CONFIRMAR**.
 
 17. **Incorporación en el models.py un campo fecha:**
-En este caso particular, como la base de datos ya tiene datos cargados el nuevo campo (fecha) que se decide incorporar se lo efectúa con la caratceristica de ser nulo, para que de ese modo, no surjan inconvenientes con los registros cargados antes de la modificación. La línea de código que se incorpora en la class Alumno es:
+En este caso particular, como la base de datos ya tiene datos cargados el nuevo campo (fecha) que se decide incorporar se lo efectúa con la caracteristica de ser nulo, para que de ese modo, no surjan inconvenientes con los registros cargados previamente a la modificación. La línea de código que se incorpora en la class Alumno es:
 ```
 fecha_creacion = models.DataField(null=True)
 ```
@@ -230,18 +230,18 @@ En el caso del forms.py en la class CrearAlumno, se incorporará del siguiente m
 ```
 fecha_creacion = forms.DateField(required=False, widget=forms.DateInput(attrs={'type': 'date'}))
 ```
-Las modificaciones abordadas con el widget permite la aparición del formato de la fecha que tiene el campo que deberá ser completado, para enviar inconvenientes al usuario al momento de ingresar o modificar un registro.
+Las modificaciones abordadas con el `widget` permite la aparición del formato de la fecha que tiene el campo que deberá ser completado, para enviar inconvenientes al usuario al momento de ingresar o modificar un registro.
 
 18. **Creación de aplicación "USUARIOS":**
 Inicialmente se crea una aplicación nueva con el siguiente código:
 ```
 python manage.py startapp usuarios
 ```
-y luego se debe incorporar en el archivo settings.py en la carpeta proyectoDjango en INSTALLED_APPS 'usuarios', y en urls.py de la misma carpeta incorporar el PATH en urlpatterns:
+Luego se debe incorporar en el archivo settings.py en la carpeta proyectoDjango en INSTALLED_APPS 'usuarios', y en urls.py de la misma carpeta incorporar el PATH en urlpatterns:
 ```
 'usuarios',
 ```
-y posteriormente, se deberá crear un archivo urls.y dentro de la nueva aplicación "usuarios" incorporar la siguiente información:
+Posteriormente, se deberá crear un archivo urls.py dentro de la nueva aplicación "usuarios" e incorporar la siguiente información:
 ```
 from django.urls import path
 from usuarios.views import login, registro
@@ -255,7 +255,7 @@ urlpatterns = [
 Y luego, configurar views.py de la carpeta usuarios.
 
 19. **Login - Creación template sobre login:**
-Se crean dos carpetas en el siguiente orden templates/usuarios dentro de la aplicación usuarios. Posteriormente se creará el archivo `login.html` con el siguiente código:
+Se crean dos carpetas en el siguiente orden: templates/usuarios dentro de la aplicación usuarios. Posteriormente se creará el archivo `login.html` con el siguiente código:
 ```
 {% extends "template_base.html" %}
 
@@ -280,7 +280,7 @@ Y en el template base, se colocará un "botón" para iniciar sesión, asi como t
 ```
 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">{{request.user.username}}</a></li>
 ```
-Asimismo, para poder realizar pruebas, se creará un "super-usuario" con las siguientes líneas de código directamente en terminal:
+Asimismo, para poder realizar pruebas, se creará un `"super-usuario"` con las siguientes líneas de código directamente en terminal:
 ```
 python manage.py createsuperuser
 admin
@@ -305,11 +305,11 @@ Se creará un template `logout.html` que cuente solo con la leyenda que aclare q
                         </form>
                     </li>
 ```
-De ese modo, Django proporciona un apartado especial denominado "admin" que no debería tener acceso un usuario "común", sino desarrolladores o personal capacitado que requiere utilizarlo. Esto se logra mediante el link: http://127.0.0.1:8000/admin/login/?next=/admin/ en el que se observa la captura de la derecha y se podrán ingresar los datos del super-usuario creado.
+De ese modo, Django proporciona un apartado especial denominado `"admin"` que no debería tener acceso un usuario "común", sino desarrolladores o personal capacitado que requiere utilizarlo (staff). Esto se logra mediante el link: http://127.0.0.1:8000/admin/login/?next=/admin/ en el que se observa la captura de la derecha y se podrán ingresar los datos del super-usuario creado.
 
-<img align="right" alt="Python" width="250" src="https://github.com/JessBasile/TuPrimeraPagina-Basile/raw/main/imagenes/django-admin.jpge">
+<img align="right" alt="Python" width="250" src="https://github.com/JessBasile/TuPrimeraPagina-Basile/raw/main/imagenes/django-admin.jpg">
 
-Para poder visualizar la información de la base de datos correctamente en este apartado, se deberá importar en el archivo admin.py dentro de la aplicación inicio, lo siguiente:
+Para poder visualizar la información de la base de datos correctamente en este apartado, se deberá importar en el archivo `admin.py` dentro de la aplicación inicio, lo siguiente:
 ```
 from django.contrib import admin
 from inicio.models import Alumno
@@ -320,29 +320,44 @@ admin.site.register(Alumno)
 Las últimas dos lineas de código permiten registrar el modelo de alumnos y modelo para el manejo de usuarios/perfil.
 
 21. **Implementación de mixin & decorador:**
-El mixin SOLO podrá inplementarse en el caso de CBV y permitirá al usuario eliminar y modificar si y solo si está logueado. Para ellos, en la aplicación inicio, en el archivo de views.py se deberá importar:
+El `mixin` SOLO podrá inplementarse en el caso de CBV y permitirá al usuario eliminar y modificar si y solo si está logueado. Para ellos, en la aplicación inicio, en el archivo de views.py se deberá importar:
+```
 from django.contrib.auth.mixins import LoginRequiredMixin
+```
 y luego en la misma ubicación se configurará la eliminación y modificación cambiando las siguientes líneas de código:
+```
 class ModificarAlumnoVista(LoginRequiredMixin, UpdateView):
 class EliminarAlumnoVista(LoginRequiredMixin, DeleteView):
-es MUY importante que primero este el Mixin para que realmente no permita efectuar cambios si no se está logueado. Finalmente, si el usuario intenta mientras no esté logueado, que lo derive a la página de iniciar sesión para indicarle que debe efectuarlo. para ello se agrega la siguiente línea de código al final del archivo settings.py en la carpeta de proyectoDjango:
+```
+Es MUY importante que primero este el Mixin para que realmente NO permita efectuar cambios si no se está logueado. Finalmente, si el usuario intenta mientras no esté logueado, será derivado a la página de iniciar sesión con la finalidad de indicarle que debe efectuarlo. Para ello se agrega la siguiente línea de código al final del archivo settings.py en la carpeta de proyectoDjango:
+```
 LOGIN_URL = '/usuarios/login/'
-En el caso que se trate de una vista general, no se implementará mixin, sino, un decorador. Para ello, en el archivo views.py de la aplicación inicio, se importará:
+```
+En el caso que se trate de una vista general, NO se implementará mixin, sino, un `decorador`. Para ello, en el archivo views.py de la aplicación inicio, se importará:
+```
 from django.contrib.auth.decorators import login_required
-Ese decorador se aplicará sobre una función/clase, en el presente proyecto se aplica sobre ver más información del siguiente modo:
+```
+Ese decorador se aplicará sobre una función/clase, en el presente proyecto se aplica sobre "ver más" información del siguiente modo:
+```
 @login_required # Se coloca antes de la función, para que impacte sobre la misma.
 def ver_alumno(request, alumno_id):
+```
 
 22. **Aplicar cambios sobre "botones" de iniciar y cerrar sesión:**
 Es recomendable que se vea uno u otro "botón" según la circunstancia, por ello se procede a efectuar algunos cambios que lo permitan. En el template_base se impletentará un if:
+```
 {% if  request.user.is_authenticated %}
-para que si no está logueado aparezca login y si ya está que figure logout.
+```
+De ese modo, si no está logueado aparecerá login y si ya está, figurará logout, pero nunca juntos en simultáneo.
 
 23. **Registro de un usuario ("común") desde plataforma:**
 Se incorpora en el template_base el "botón" para registrarse que solo figurará si el usuario no se encuentra logueado junto a iniciar sesión, por si ya se encuentra registrado.
 Posteriormente, se incorpora la función de registro en views.py de la aplicación usuarios, aunque primero se deberá efectuar una importación:
+```
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+```
 Asimismo, para personalizar el formulario, se creará un archivo forms.py en la aplicación usuarios que dentro se importará y creará clases como a continuación:
+```
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.contrib.auth.models import User
@@ -356,19 +371,33 @@ class MiFormularioDeCreacion(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2']
         help_texts = {field: '' for field in fields}
+```
 Y por último, deberá ser importado el formulario en la vista del siguiente modo:
+```
 from usuarios.forms import MiFormularioDeCreacion
+```
 
 24. **Incorporación de información & edición de perfil:**
-Se deberá crear una vista para edición de perfil dentro de la cual se podrá importar el UserChangeForm y se implemente para crear la función de la misma, aunque en el caso particular del presente proyecto, se utilizó un formulario de creación propia personalizado en forms.py dentro de la app usuarios. A su vez, se deberá incorporar el PATH en la urls y agregarlo en el template_base incorporando luego de loguearse esa posibilidad de edición del siguiente modo:
+Se deberá crear una vista para edición de perfil dentro de la cual se podrá importar el `UserChangeForm` y será implementado para crear la función de la misma, aunque en el caso particular del presente proyecto, se utilizó un formulario de creación propia personalizado en forms.py dentro de la app usuarios. A su vez, se deberá incorporar el PATH en la urls y agregarlo en el template_base incorporando luego de loguearse esa posibilidad de edición del siguiente modo:
+```
 <li class="nav-item"><a class="nav-link js-scroll-trigger" href={% url "editar_perfil" %} style="color:rgba(228, 176, 119, 0.67)">{{request.user.username}}</a></li>
-Asimismo, al momento de ingresar a la edición del perfil se incorporará (como buena práctica) una página informacion_perfil.html que muestre un detalle de la información actual del perfil, y un enlace, que derive a la edicion_perfil.html.
-Por otro lado, se creará el apartado para el cambio de contraseña que se realizará en CBV importando desde django en views.py PasswordChangeView.
+```
+Asimismo, al momento de ingresar a la edición del perfil se incorporará (como buena práctica) una página `informacion_perfil.html` que muestre un detalle de la información actual del perfil, y un enlace, que derive a la `edicion_perfil.html`.
+Por otro lado, se creará el apartado para el cambio de contraseña que se realizará en CBV importando desde django en views.py `PasswordChangeView`.
 
 25. **Incorporación de cambio contraseña:**
+Para lograr que el template del cambio de contraseña figure en español, y no en inglés como sucede por default, será recomendable armar una clase en forms.py dentro de la aplicación usuarios, que contenga:
+```
+class MiCambioPassword(PasswordChangeForm):
+    old_password = forms.CharField(label="Contaseña Actual", widget=forms.PasswordInput)
+    new_password1 = forms.CharField(label="Nueva Contraseña", widget=forms.PasswordInput)
+    new_password2 = forms.CharField(label="Confirmar Nueva Contraseña", widget=forms.PasswordInput)
+```
+En conjunto, se deberá "llamar" en el formulario `{{form}}` dentro del template `cambio_pass.html` la url denominada `"cambiar_pass"` para que ese cambio de idioma se aplique exitosamente.
 
 26. **Avatar:**
-Para incorporar un avatar será necesario dentro de la aplicación usuarios, en models.py crear una clase "InfoExtra" determinando ese campo de imagen "avatar" del siguiente modo:
+Para incorporar un avatar será necesario dentro de la aplicación usuarios, en models.py crear una clase `"InfoExtra"` determinando ese campo de imagen `"avatar"` del siguiente modo:
+```
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -376,39 +405,53 @@ from django.contrib.auth.models import User
 class InfoExtra(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar = models.ImageField(upload_to='avatares', null=True, blanck=True)
-Posteriormente deberé ejecutar en terminal:
+```
+Posteriormente se deberrán ejecutar en terminal, todos los siguientes comandos:
+```
 pip install Pillow #Libreria necesaria para manejo de imágenes
 pip freeze > requirements.txt
 python manage.py makemigrations
 Python manage.py migrate
-Luego, se deberán incorporar en settings.py del proyecto:
+```
+Luego, se incorporarán en settings.py del proyecto las siguientes configuraciones o líneas de código:
+```
 import os
 MEDIA_URL = '/media/'
 MEDIA_ ROOT = os.path.join(BASE_DIR, 'media')
-y en urls.py del proyecto se incorporan importaciones y path:
+```
+Y en urls.py del proyecto se incorporan importaciones y path:
+```
 from django.conf import settings
 from django.conf.urls.static import static
 
     + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-Luego se deberán reconfigurar las vistas de login y editar_perfil para incorporar esa InfoExtra del avatar requerida para que se guarde adecuadamente. Y en el template de editar_perfil se deberá modificar el formulario de la siguiente manera (ya no será simplemente POST):
+```
+En consecuencia, se deberán reconfigurar las vistas de login y editar_perfil para incorporar esa InfoExtra del avatar requerida con la finalidad de ser guardadas adecuadamente. Y en el template de editar_perfil.html se modificará el formulario de la siguiente manera (ya no será simplemente POST):
+```
     <form action={% url "editar_perfil" %} method="POST" enctype='multipart/form-data'>
+```
 
 27. **Incorporación de un nuevo campo en modelo InfoExtra:**
-Se procede a modificar el modelo incorporando el campo "asignatura" para después en función de ese dato habilitar material de estudio según corresponda. Como esta modificación afecta la estructura de la base de datos se procederá a realizar makemigrations y migrate para actualizar la BD. 
-Después se modifica la vista, y además, ese campo es incorporado en el formulario de edición para que el estudiante pueda completarlo, y luego, acceder a su material de estudio. Por último, se agrega en el template que muestra la información del usuario. 
+Se procede a modificar el modelo incorporando el campo `"asignatura"` para después en función de ese dato habilitar material de estudio según corresponda. Como esta modificación afecta la estructura de la base de datos se procederá a realizar `makemigrations` y `migrate` para actualizar la BD. 
+Después se modificará la vista, y además, ese campo es incorporado en el formulario de edición para que el estudiante pueda completarlo, y luego, acceder a su material de estudio. Por último, se agrega en el template que muestra la información del usuario. 
 
 28. **Incorporación de Avatar en aplicación Alumnos:**
-Al igual que fué efectuado en los usuarios, se procede a incorporar un avatar en los alumnos. Primero se modifica el modelo incorporando el avatar (y efectuando actualización dn BD con makemigrations y migrate), luego esa modificación es incorporada en la vista, el formulario y finalmente en el template. 
+Al igual que fué efectuado en los usuarios, se procede a incorporar un avatar en los alumnos. Primero se modifica el modelo agregando el avatar (y efectuando actualización de la BD con makemigrations y migrate), luego esa modificación es incorporada en la vista, el formulario y finalmente en el template.
 En el modelo, se incorpora el avatar con la siguiente linea de código:
+```
  avatar_alumno = models.ImageField(upload_to='avatares_alumnos', null=True, blank=True)
+ ```
 Posteriormente se modifican las vistas crear_alumno y modificar_alumno. En el caso particular de modificar_alumno se aplicarán las modificaciones sobre el template CBV que es el activo en el path de urls, caso contrario, no se aplicarán las modificaciones.
+`Aclaración:` Sobre cada materia se creará un template que estarán dentro de la templates/inicio/materias: `Administracio.html`, `Contabilidad.html` y `Rrhh`.
 
 29. **Configuración de material de estudio por asignatura:**
+En cada uno de los templates dentro de `materias` se incorporará el material de estudio personalizado con hipervínculos que deriven hacia las presentaciones (en su mayoría) de plataforma Genial.ly. Se separan en secciones, tales como: presentaciones, videos explicativos, actividades lúdicas, trabajos prácticos integrativos, carpeta de trabajos prácticos (en el caso de materias prácticas como Contabilidad) y material adicional si lo amerita.
 
 30. **Incorporación de "Sobre Mí":**
+Para la incorporación del apartado "Sobre Mi", se procedió a crear una vista dentro de la aplicación inicio, una url y template `sobre_mi.html`, el cual contiene breve información sobre la trayectoria docente de la autora del sitio web, y su contacto de las diferentes redes sociales.
 
 31 **Video explicativo del proyecto:**
-Se realizó un video explicativo ([Link AQUÍ](https://www.youtube.com/watch?v=xt91jyZyDKE)) que resume la funcionalidad de cada sección del sitio web diseñado con Python a través de Django. Asimismo, a continuación se expone un gif que resume su contenido:
+Se realizó un video explicativo ([Link AQUÍ](https://www.youtube.com/watch?v=xt91jyZyDKE)) que resume la funcionalidad de cada sección del sitio web diseñado con Python a través de Django. Asimismo, a continuación se expone un gif que resume su contenido (puede demorar unos minútos en cargar por su peso):
 
 <img align="right" alt="qr_wifly" src="https://github.com/JessBasile/TuPrimeraPagina-Basile/raw/main/imagenes/Proyecto-de-Python-con-Django.gif"> &nbsp;<br>
 
